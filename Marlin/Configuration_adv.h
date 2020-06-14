@@ -196,7 +196,7 @@
   /**
    * As described above, except for the bed (M140/M190/M303).
    */
-  #define WATCH_BED_TEMP_PERIOD                360 // Seconds
+  #define WATCH_BED_TEMP_PERIOD                60 // Seconds
   #define WATCH_BED_TEMP_INCREASE               2 // Degrees Celsius
 #endif
 
@@ -376,10 +376,10 @@
   #define CONTROLLER_FAN_PIN P1_28        // Set a custom pin for the controller fan
   //#define CONTROLLER_FAN_USE_Z_ONLY    // With this option only the Z axis is considered
   #define CONTROLLERFAN_SPEED_MIN      0 // (0-255) Minimum speed. (If set below this value the fan is turned off.)
-  #define CONTROLLERFAN_SPEED_ACTIVE 100 // (0-255) Active speed, used when any motor is enabled
-  #define CONTROLLERFAN_SPEED_IDLE     255 // (0-255) Idle speed, used when motors are disabled
+  #define CONTROLLERFAN_SPEED_ACTIVE 255 // (0-255) Active speed, used when any motor is enabled
+  #define CONTROLLERFAN_SPEED_IDLE     0 // (0-255) Idle speed, used when motors are disabled
   #define CONTROLLERFAN_IDLE_TIME     60 // (seconds) Extra time to keep the fan running after disabling motors
-  #define CONTROLLER_FAN_EDITABLE      // Enable M710 configurable settings
+  //#define CONTROLLER_FAN_EDITABLE      // Enable M710 configurable settings
   #if ENABLED(CONTROLLER_FAN_EDITABLE)
     #define CONTROLLER_FAN_MENU          // Enable the Controller Fan submenu
   #endif
@@ -480,10 +480,10 @@
  */
 #define CASE_LIGHT_ENABLE
 #if ENABLED(CASE_LIGHT_ENABLE)
-  #define CASE_LIGHT_PIN P0_28                  // Override the default pin if needed
+  #define CASE_LIGHT_PIN P0_28                 // Override the default pin if needed
   #define INVERT_CASE_LIGHT true             // Set true if Case Light is ON when pin is LOW
   #define CASE_LIGHT_DEFAULT_ON true          // Set default power-up state on
-  #define CASE_LIGHT_DEFAULT_BRIGHTNESS 255   // Set default power-up brightness (0-255, requires PWM pin)
+  #define CASE_LIGHT_DEFAULT_BRIGHTNESS 105   // Set default power-up brightness (0-255, requires PWM pin)
   //#define CASE_LIGHT_MAX_PWM 128            // Limit pwm
   //#define CASE_LIGHT_MENU                   // Add Case Light options to the LCD menu
   //#define CASE_LIGHT_NO_BRIGHTNESS          // Disable brightness control. Enable for non-PWM lighting.
@@ -629,7 +629,7 @@
 //#define SENSORLESS_BACKOFF_MM  { 2, 2 }     // (mm) Backoff from endstops before sensorless homing
 
 #define HOMING_BUMP_MM      { 5, 5, 2 }       // (mm) Backoff from endstops after first bump
-#define HOMING_BUMP_DIVISOR { 2, 2, 5 }       // Re-Bump Speed Divisor (Divides the Homing Feedrate)
+#define HOMING_BUMP_DIVISOR { 2, 2, 4 }       // Re-Bump Speed Divisor (Divides the Homing Feedrate)
 
 //#define HOMING_BACKOFF_POST_MM { 2, 2, 2 }  // (mm) Backoff from endstops after homing
 
@@ -657,7 +657,7 @@
 
   // Safety: The probe needs time to recognize the command.
   //         Minimum command delay (ms). Enable and increase if needed.
-  #define BLTOUCH_DELAY 500
+  //#define BLTOUCH_DELAY 500
 
   /**
    * Settings for BLTOUCH Classic 1.2, 1.3 or BLTouch Smart 1.0, 2.0, 2.2, 3.0, 3.1, and most clones:
@@ -683,7 +683,7 @@
    * differs, a mode set eeprom write will be completed at initialization.
    * Use the option below to force an eeprom write to a V3.1 probe regardless.
    */
-  #define BLTOUCH_SET_5V_MODE
+  //#define BLTOUCH_SET_5V_MODE
 
   /**
    * Safety: Activate if connecting a probe with an unknown voltage mode.
@@ -691,7 +691,7 @@
    * V3.1: Force a probe with unknown mode into selected mode at Marlin startup ( = Probe EEPROM write )
    * To preserve the life of the probe, use this once then turn it off and re-flash.
    */
-  #define BLTOUCH_FORCE_MODE_SET
+  //#define BLTOUCH_FORCE_MODE_SET
 
   /**
    * Use "HIGH SPEED" mode for probing.
@@ -1565,12 +1565,12 @@
  *
  * See https://marlinfw.org/docs/features/lin_advance.html for full instructions.
  */
-#define LIN_ADVANCE
+//#define LIN_ADVANCE
 #if ENABLED(LIN_ADVANCE)
   //#define EXTRA_LIN_ADVANCE_K // Enable for second linear advance constants
-  #define LIN_ADVANCE_K 0.05    // Unit: mm compression per 1mm/s extruder speed
+  #define LIN_ADVANCE_K 0.22    // Unit: mm compression per 1mm/s extruder speed
   //#define LA_DEBUG            // If enabled, this will generate debug information output over USB.
-  #define EXPERIMENTAL_SCURVE // Enable this option to permit S-Curve Acceleration
+  //#define EXPERIMENTAL_SCURVE // Enable this option to permit S-Curve Acceleration
 #endif
 
 // @section leveling
@@ -2192,7 +2192,7 @@
   #endif
 
   #if AXIS_IS_TMC(Y)
-    #define Y_CURRENT       1200
+    #define Y_CURRENT       1600
     #define Y_CURRENT_HOME  Y_CURRENT
     #define Y_MICROSTEPS     16
     #define Y_RSENSE          0.11
@@ -2360,7 +2360,7 @@
    * Use for drivers that do not use a dedicated enable pin, but rather handle the same
    * function through a communication line such as SPI or UART.
    */
-  #define SOFTWARE_DRIVER_ENABLE
+  //#define SOFTWARE_DRIVER_ENABLE
 
   /**
    * TMC2130, TMC2160, TMC2208, TMC2209, TMC5130 and TMC5160 only
@@ -2398,7 +2398,7 @@
    * M912 - Clear stepper driver overtemperature pre-warn condition flag.
    * M122 - Report driver parameters (Requires TMC_DEBUG)
    */
-  #define MONITOR_DRIVER_STATUS
+  //#define MONITOR_DRIVER_STATUS
 
   #if ENABLED(MONITOR_DRIVER_STATUS)
     #define CURRENT_STEP_DOWN     50  // [mA]
@@ -2413,17 +2413,17 @@
    * STEALTHCHOP_(XY|Z|E) must be enabled to use HYBRID_THRESHOLD.
    * M913 X/Y/Z/E to live tune the setting
    */
-  #define HYBRID_THRESHOLD
+  //#define HYBRID_THRESHOLD
 
-  #define X_HYBRID_THRESHOLD     0  // [mm/s]
-  #define X2_HYBRID_THRESHOLD    0
-  #define Y_HYBRID_THRESHOLD     0
-  #define Y2_HYBRID_THRESHOLD    0
-  #define Z_HYBRID_THRESHOLD       0
-  #define Z2_HYBRID_THRESHOLD      0
-  #define Z3_HYBRID_THRESHOLD      0
-  #define Z4_HYBRID_THRESHOLD      0
-  #define E0_HYBRID_THRESHOLD     0
+  #define X_HYBRID_THRESHOLD     100  // [mm/s]
+  #define X2_HYBRID_THRESHOLD    100
+  #define Y_HYBRID_THRESHOLD     100
+  #define Y2_HYBRID_THRESHOLD    100
+  #define Z_HYBRID_THRESHOLD       3
+  #define Z2_HYBRID_THRESHOLD      3
+  #define Z3_HYBRID_THRESHOLD      3
+  #define Z4_HYBRID_THRESHOLD      3
+  #define E0_HYBRID_THRESHOLD     30
   #define E1_HYBRID_THRESHOLD     30
   #define E2_HYBRID_THRESHOLD     30
   #define E3_HYBRID_THRESHOLD     30
@@ -2508,176 +2508,176 @@
    */
   #define TMC_ADV() {  }
 
-  #endif // HAS_TRINAMIC_CONFIG
+#endif // HAS_TRINAMIC_CONFIG
 
-  // @section L64XX
+// @section L64XX
 
-  /**
-   * L64XX Stepper Driver options
-   *
-   * Arduino-L6470 library (0.8.0 or higher) is required.
-   * https://github.com/ameyer/Arduino-L6470
-   *
-   * Requires the following to be defined in your pins_YOUR_BOARD file
-   *     L6470_CHAIN_SCK_PIN
-   *     L6470_CHAIN_MISO_PIN
-   *     L6470_CHAIN_MOSI_PIN
-   *     L6470_CHAIN_SS_PIN
-   *     ENABLE_RESET_L64XX_CHIPS(Q)  where Q is 1 to enable and 0 to reset
-   */
+/**
+ * L64XX Stepper Driver options
+ *
+ * Arduino-L6470 library (0.8.0 or higher) is required.
+ * https://github.com/ameyer/Arduino-L6470
+ *
+ * Requires the following to be defined in your pins_YOUR_BOARD file
+ *     L6470_CHAIN_SCK_PIN
+ *     L6470_CHAIN_MISO_PIN
+ *     L6470_CHAIN_MOSI_PIN
+ *     L6470_CHAIN_SS_PIN
+ *     ENABLE_RESET_L64XX_CHIPS(Q)  where Q is 1 to enable and 0 to reset
+ */
 
-  #if HAS_L64XX
+#if HAS_L64XX
 
-    //#define L6470_CHITCHAT        // Display additional status info
+  //#define L6470_CHITCHAT        // Display additional status info
 
-    #if AXIS_IS_L64XX(X)
-      #define X_MICROSTEPS       128  // Number of microsteps (VALID: 1, 2, 4, 8, 16, 32, 128) - L6474 max is 16
-      #define X_OVERCURRENT     2000  // (mA) Current where the driver detects an over current
-                                      //   L6470 & L6474 - VALID: 375 x (1 - 16) - 6A max - rounds down
-                                      //   POWERSTEP01: VALID: 1000 x (1 - 32) - 32A max - rounds down
-      #define X_STALLCURRENT    1500  // (mA) Current where the driver detects a stall (VALID: 31.25 * (1-128) -  4A max - rounds down)
-                                      //   L6470 & L6474 - VALID: 31.25 * (1-128) -  4A max - rounds down
-                                      //   POWERSTEP01: VALID: 200 x (1 - 32) - 6.4A max - rounds down
-                                      //   L6474 - STALLCURRENT setting is used to set the nominal (TVAL) current
-      #define X_MAX_VOLTAGE      127  // 0-255, Maximum effective voltage seen by stepper - not used by L6474
-      #define X_CHAIN_POS         -1  // Position in SPI chain, 0=Not in chain, 1=Nearest MOSI
-      #define X_SLEW_RATE          1  // 0-3, Slew 0 is slowest, 3 is fastest
-    #endif
+  #if AXIS_IS_L64XX(X)
+    #define X_MICROSTEPS       128  // Number of microsteps (VALID: 1, 2, 4, 8, 16, 32, 128) - L6474 max is 16
+    #define X_OVERCURRENT     2000  // (mA) Current where the driver detects an over current
+                                    //   L6470 & L6474 - VALID: 375 x (1 - 16) - 6A max - rounds down
+                                    //   POWERSTEP01: VALID: 1000 x (1 - 32) - 32A max - rounds down
+    #define X_STALLCURRENT    1500  // (mA) Current where the driver detects a stall (VALID: 31.25 * (1-128) -  4A max - rounds down)
+                                    //   L6470 & L6474 - VALID: 31.25 * (1-128) -  4A max - rounds down
+                                    //   POWERSTEP01: VALID: 200 x (1 - 32) - 6.4A max - rounds down
+                                    //   L6474 - STALLCURRENT setting is used to set the nominal (TVAL) current
+    #define X_MAX_VOLTAGE      127  // 0-255, Maximum effective voltage seen by stepper - not used by L6474
+    #define X_CHAIN_POS         -1  // Position in SPI chain, 0=Not in chain, 1=Nearest MOSI
+    #define X_SLEW_RATE          1  // 0-3, Slew 0 is slowest, 3 is fastest
+  #endif
 
-    #if AXIS_IS_L64XX(X2)
-      #define X2_MICROSTEPS      128
-      #define X2_OVERCURRENT    2000
-      #define X2_STALLCURRENT   1500
-      #define X2_MAX_VOLTAGE     127
-      #define X2_CHAIN_POS        -1
-      #define X2_SLEW_RATE         1
-    #endif
+  #if AXIS_IS_L64XX(X2)
+    #define X2_MICROSTEPS      128
+    #define X2_OVERCURRENT    2000
+    #define X2_STALLCURRENT   1500
+    #define X2_MAX_VOLTAGE     127
+    #define X2_CHAIN_POS        -1
+    #define X2_SLEW_RATE         1
+  #endif
 
-    #if AXIS_IS_L64XX(Y)
-      #define Y_MICROSTEPS       128
-      #define Y_OVERCURRENT     2000
-      #define Y_STALLCURRENT    1500
-      #define Y_MAX_VOLTAGE      127
-      #define Y_CHAIN_POS         -1
-      #define Y_SLEW_RATE          1
-    #endif
+  #if AXIS_IS_L64XX(Y)
+    #define Y_MICROSTEPS       128
+    #define Y_OVERCURRENT     2000
+    #define Y_STALLCURRENT    1500
+    #define Y_MAX_VOLTAGE      127
+    #define Y_CHAIN_POS         -1
+    #define Y_SLEW_RATE          1
+  #endif
 
-    #if AXIS_IS_L64XX(Y2)
-      #define Y2_MICROSTEPS      128
-      #define Y2_OVERCURRENT    2000
-      #define Y2_STALLCURRENT   1500
-      #define Y2_MAX_VOLTAGE     127
-      #define Y2_CHAIN_POS        -1
-      #define Y2_SLEW_RATE         1
-    #endif
+  #if AXIS_IS_L64XX(Y2)
+    #define Y2_MICROSTEPS      128
+    #define Y2_OVERCURRENT    2000
+    #define Y2_STALLCURRENT   1500
+    #define Y2_MAX_VOLTAGE     127
+    #define Y2_CHAIN_POS        -1
+    #define Y2_SLEW_RATE         1
+  #endif
 
-    #if AXIS_IS_L64XX(Z)
-      #define Z_MICROSTEPS       128
-      #define Z_OVERCURRENT     2000
-      #define Z_STALLCURRENT    1500
-      #define Z_MAX_VOLTAGE      127
-      #define Z_CHAIN_POS         -1
-      #define Z_SLEW_RATE          1
-    #endif
+  #if AXIS_IS_L64XX(Z)
+    #define Z_MICROSTEPS       128
+    #define Z_OVERCURRENT     2000
+    #define Z_STALLCURRENT    1500
+    #define Z_MAX_VOLTAGE      127
+    #define Z_CHAIN_POS         -1
+    #define Z_SLEW_RATE          1
+  #endif
 
-    #if AXIS_IS_L64XX(Z2)
-      #define Z2_MICROSTEPS      128
-      #define Z2_OVERCURRENT    2000
-      #define Z2_STALLCURRENT   1500
-      #define Z2_MAX_VOLTAGE     127
-      #define Z2_CHAIN_POS        -1
-      #define Z2_SLEW_RATE         1
-    #endif
+  #if AXIS_IS_L64XX(Z2)
+    #define Z2_MICROSTEPS      128
+    #define Z2_OVERCURRENT    2000
+    #define Z2_STALLCURRENT   1500
+    #define Z2_MAX_VOLTAGE     127
+    #define Z2_CHAIN_POS        -1
+    #define Z2_SLEW_RATE         1
+  #endif
 
-    #if AXIS_IS_L64XX(Z3)
-      #define Z3_MICROSTEPS      128
-      #define Z3_OVERCURRENT    2000
-      #define Z3_STALLCURRENT   1500
-      #define Z3_MAX_VOLTAGE     127
-      #define Z3_CHAIN_POS        -1
-      #define Z3_SLEW_RATE         1
-    #endif
+  #if AXIS_IS_L64XX(Z3)
+    #define Z3_MICROSTEPS      128
+    #define Z3_OVERCURRENT    2000
+    #define Z3_STALLCURRENT   1500
+    #define Z3_MAX_VOLTAGE     127
+    #define Z3_CHAIN_POS        -1
+    #define Z3_SLEW_RATE         1
+  #endif
 
-    #if AXIS_IS_L64XX(Z4)
-      #define Z4_MICROSTEPS      128
-      #define Z4_OVERCURRENT    2000
-      #define Z4_STALLCURRENT   1500
-      #define Z4_MAX_VOLTAGE     127
-      #define Z4_CHAIN_POS        -1
-      #define Z4_SLEW_RATE         1
-    #endif
+  #if AXIS_IS_L64XX(Z4)
+    #define Z4_MICROSTEPS      128
+    #define Z4_OVERCURRENT    2000
+    #define Z4_STALLCURRENT   1500
+    #define Z4_MAX_VOLTAGE     127
+    #define Z4_CHAIN_POS        -1
+    #define Z4_SLEW_RATE         1
+  #endif
 
-    #if AXIS_IS_L64XX(E0)
-      #define E0_MICROSTEPS      128
-      #define E0_OVERCURRENT    2000
-      #define E0_STALLCURRENT   1500
-      #define E0_MAX_VOLTAGE     127
-      #define E0_CHAIN_POS        -1
-      #define E0_SLEW_RATE         1
-    #endif
+  #if AXIS_IS_L64XX(E0)
+    #define E0_MICROSTEPS      128
+    #define E0_OVERCURRENT    2000
+    #define E0_STALLCURRENT   1500
+    #define E0_MAX_VOLTAGE     127
+    #define E0_CHAIN_POS        -1
+    #define E0_SLEW_RATE         1
+  #endif
 
-    #if AXIS_IS_L64XX(E1)
-      #define E1_MICROSTEPS      128
-      #define E1_OVERCURRENT    2000
-      #define E1_STALLCURRENT   1500
-      #define E1_MAX_VOLTAGE     127
-      #define E1_CHAIN_POS        -1
-      #define E1_SLEW_RATE         1
-    #endif
+  #if AXIS_IS_L64XX(E1)
+    #define E1_MICROSTEPS      128
+    #define E1_OVERCURRENT    2000
+    #define E1_STALLCURRENT   1500
+    #define E1_MAX_VOLTAGE     127
+    #define E1_CHAIN_POS        -1
+    #define E1_SLEW_RATE         1
+  #endif
 
-    #if AXIS_IS_L64XX(E2)
-      #define E2_MICROSTEPS      128
-      #define E2_OVERCURRENT    2000
-      #define E2_STALLCURRENT   1500
-      #define E2_MAX_VOLTAGE     127
-      #define E2_CHAIN_POS        -1
-      #define E2_SLEW_RATE         1
-    #endif
+  #if AXIS_IS_L64XX(E2)
+    #define E2_MICROSTEPS      128
+    #define E2_OVERCURRENT    2000
+    #define E2_STALLCURRENT   1500
+    #define E2_MAX_VOLTAGE     127
+    #define E2_CHAIN_POS        -1
+    #define E2_SLEW_RATE         1
+  #endif
 
-    #if AXIS_IS_L64XX(E3)
-      #define E3_MICROSTEPS      128
-      #define E3_OVERCURRENT    2000
-      #define E3_STALLCURRENT   1500
-      #define E3_MAX_VOLTAGE     127
-      #define E3_CHAIN_POS        -1
-      #define E3_SLEW_RATE         1
-    #endif
+  #if AXIS_IS_L64XX(E3)
+    #define E3_MICROSTEPS      128
+    #define E3_OVERCURRENT    2000
+    #define E3_STALLCURRENT   1500
+    #define E3_MAX_VOLTAGE     127
+    #define E3_CHAIN_POS        -1
+    #define E3_SLEW_RATE         1
+  #endif
 
-    #if AXIS_IS_L64XX(E4)
-      #define E4_MICROSTEPS      128
-      #define E4_OVERCURRENT    2000
-      #define E4_STALLCURRENT   1500
-      #define E4_MAX_VOLTAGE     127
-      #define E4_CHAIN_POS        -1
-      #define E4_SLEW_RATE         1
-    #endif
+  #if AXIS_IS_L64XX(E4)
+    #define E4_MICROSTEPS      128
+    #define E4_OVERCURRENT    2000
+    #define E4_STALLCURRENT   1500
+    #define E4_MAX_VOLTAGE     127
+    #define E4_CHAIN_POS        -1
+    #define E4_SLEW_RATE         1
+  #endif
 
-    #if AXIS_IS_L64XX(E5)
-      #define E5_MICROSTEPS      128
-      #define E5_OVERCURRENT    2000
-      #define E5_STALLCURRENT   1500
-      #define E5_MAX_VOLTAGE     127
-      #define E5_CHAIN_POS        -1
-      #define E5_SLEW_RATE         1
-    #endif
+  #if AXIS_IS_L64XX(E5)
+    #define E5_MICROSTEPS      128
+    #define E5_OVERCURRENT    2000
+    #define E5_STALLCURRENT   1500
+    #define E5_MAX_VOLTAGE     127
+    #define E5_CHAIN_POS        -1
+    #define E5_SLEW_RATE         1
+  #endif
 
-    #if AXIS_IS_L64XX(E6)
-      #define E6_MICROSTEPS      128
-      #define E6_OVERCURRENT    2000
-      #define E6_STALLCURRENT   1500
-      #define E6_MAX_VOLTAGE     127
-      #define E6_CHAIN_POS        -1
-      #define E6_SLEW_RATE         1
-    #endif
+  #if AXIS_IS_L64XX(E6)
+    #define E6_MICROSTEPS      128
+    #define E6_OVERCURRENT    2000
+    #define E6_STALLCURRENT   1500
+    #define E6_MAX_VOLTAGE     127
+    #define E6_CHAIN_POS        -1
+    #define E6_SLEW_RATE         1
+  #endif
 
-    #if AXIS_IS_L64XX(E7)
-      #define E7_MICROSTEPS      128
-      #define E7_OVERCURRENT    2000
-      #define E7_STALLCURRENT   1500
-      #define E7_MAX_VOLTAGE     127
-      #define E7_CHAIN_POS        -1
-      #define E7_SLEW_RATE         1
-    #endif
+  #if AXIS_IS_L64XX(E7)
+    #define E7_MICROSTEPS      128
+    #define E7_OVERCURRENT    2000
+    #define E7_STALLCURRENT   1500
+    #define E7_MAX_VOLTAGE     127
+    #define E7_CHAIN_POS        -1
+    #define E7_SLEW_RATE         1
+  #endif
 
   /**
    * Monitor L6470 drivers for error conditions like over temperature and over current.
