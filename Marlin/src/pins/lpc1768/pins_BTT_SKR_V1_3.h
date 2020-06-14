@@ -67,7 +67,7 @@
     #define Z_MIN_PIN                      P1_24  // Z+
   #endif
 #else
-  #define Z_MIN_PIN                        P1_25  // Z-
+  #define Z_MIN_PIN                        P1_26  // Z-
   #define Z_MAX_PIN                        P1_24  // Z+
 #endif
 
@@ -84,7 +84,7 @@
 // Z Probe (when not Z_MIN_PIN)
 //
 #ifndef Z_MIN_PROBE_PIN
-  #define Z_MIN_PROBE_PIN                  P1_24
+  #define Z_MIN_PROBE_PIN                  P1_26
 #endif
 
 //
