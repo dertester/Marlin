@@ -972,11 +972,11 @@
  *
  * Specify a Probe position as { X, Y, Z }
  */
-#define NOZZLE_TO_PROBE_OFFSET { -65, -5, -2.35 }
+#define NOZZLE_TO_PROBE_OFFSET { 26, -27, -0.23 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
-#define PROBING_MARGIN 22
+#define PROBING_MARGIN 30
 
 // X and Y axis travel speed (mm/m) between probes
 #define XY_PROBE_SPEED 8000
@@ -1018,7 +1018,7 @@
 #define Z_CLEARANCE_MULTI_PROBE     4 // Z Clearance between multiple probes
 //#define Z_AFTER_PROBING           5 // Z position after probing is done
 
-#define Z_PROBE_LOW_POINT          -4 // Farthest distance below the trigger-point to go before stopping
+#define Z_PROBE_LOW_POINT          -10 // Farthest distance below the trigger-point to go before stopping
 
 // For M851 give a range for adjusting the Z probe offset
 #define Z_PROBE_OFFSET_RANGE_MIN -20
@@ -1299,8 +1299,8 @@
 
   //#define MESH_EDIT_GFX_OVERLAY   // Display a graphics overlay while editing the mesh
 
-  #define MESH_INSET 30             // Set Mesh bounds as an inset region of the bed
-  #define GRID_MAX_POINTS_X 5      // Don't use more than 15 points per axis, implementation limited.
+  #define MESH_INSET 40             // Set Mesh bounds as an inset region of the bed
+  #define GRID_MAX_POINTS_X 15      // Don't use more than 15 points per axis, implementation limited.
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   #define UBL_MESH_EDIT_MOVES_Z     // Sophisticated users prefer no movement of nozzle
