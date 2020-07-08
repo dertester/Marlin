@@ -972,7 +972,7 @@
  *
  * Specify a Probe position as { X, Y, Z }
  */
-#define NOZZLE_TO_PROBE_OFFSET { 26, -27, -0.23 }
+#define NOZZLE_TO_PROBE_OFFSET { 40, 5, -0.87 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1108,7 +1108,7 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 410
+#define X_BED_SIZE 400
 #define Y_BED_SIZE 410
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
@@ -1380,7 +1380,7 @@
 
 // Homing speeds (mm/m)
 #define HOMING_FEEDRATE_XY (50*60)
-#define HOMING_FEEDRATE_Z  (4*60)
+#define HOMING_FEEDRATE_Z  (4*50)
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
