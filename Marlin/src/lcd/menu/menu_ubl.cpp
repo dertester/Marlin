@@ -28,12 +28,12 @@
 
 #if BOTH(HAS_LCD_MENU, AUTO_BED_LEVELING_UBL)
 
-#include "menu.h"
+#include "menu_item.h"
 #include "../../gcode/gcode.h"
 #include "../../gcode/queue.h"
 #include "../../module/motion.h"
 #include "../../module/planner.h"
-#include "../../module/configuration_store.h"
+#include "../../module/settings.h"
 #include "../../feature/bedlevel/bedlevel.h"
 
 static int16_t ubl_storage_slot = 0,
