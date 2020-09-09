@@ -819,7 +819,7 @@
 #define DISABLE_INACTIVE_E true
 
 // If the Nozzle or Bed falls when the Z stepper is disabled, set its resting position here.
-#define Z_AFTER_DEACTIVATE 400
+//#define Z_AFTER_DEACTIVATE 400
 
 //#define HOME_AFTER_DEACTIVATE  // Require rehoming after steppers are deactivated
 
