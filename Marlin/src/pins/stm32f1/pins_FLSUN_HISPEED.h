@@ -114,11 +114,7 @@
  * Several wiring options are provided below, defaulting to
  * to the most compatible.
  */
-
-//
-// Drivers
-//
-#if HAS_TMC220x
+#if HAS_TMC_UART
   // SoftwareSerial with one pin per driver
   // Compatible with TMC2208 and TMC2209 drivers
   #define X_SERIAL_TX_PIN                   PA10  // RXD1
@@ -137,20 +133,20 @@
     #define DEFAULT_PWM_MOTOR_CURRENT { 800, 800, 800 }
   #endif
 
-/**
- * MKS Robin_Wifi or another ESP8266 module
- *
- *      __ESP(M1)__       -J1-
- *  GND| 15 | | 08 |+3v3  (22)  RXD1      (PA10)
- *     | 16 | | 07 |MOSI  (21)  TXD1      (PA9)   Active LOW, probably OK to leave floating
- *  IO2| 17 | | 06 |MISO  (19)  IO1       (PC7)   Leave as unused (ESP3D software configures this with a pullup so OK to leave as floating)
- *  IO0| 18 | | 05 |CLK   (18)  IO0       (PA8)   Must be HIGH (ESP3D software configures this with a pullup so OK to leave as floating)
- *  IO1| 19 | | 03 |EN    (03)  WIFI_EN           Must be HIGH for module to run
- *     | nc | | nc |      (01)  WIFI_CTRL (PA5)
- *   RX| 21 | | nc |
- *   TX| 22 | | 01 |RST
- *       ￣￣ AE￣￣
- */
+  /**
+   * MKS Robin_Wifi or another ESP8266 module
+   *
+   *      __ESP(M1)__       -J1-
+   *  GND| 15 | | 08 |+3v3  (22)  RXD1      (PA10)
+   *     | 16 | | 07 |MOSI  (21)  TXD1      (PA9)   Active LOW, probably OK to leave floating
+   *  IO2| 17 | | 06 |MISO  (19)  IO1       (PC7)   Leave as unused (ESP3D software configures this with a pullup so OK to leave as floating)
+   *  IO0| 18 | | 05 |CLK   (18)  IO0       (PA8)   Must be HIGH (ESP3D software configures this with a pullup so OK to leave as floating)
+   *  IO1| 19 | | 03 |EN    (03)  WIFI_EN           Must be HIGH for module to run
+   *     | nc | | nc |      (01)  WIFI_CTRL (PA5)
+   *   RX| 21 | | nc |
+   *   TX| 22 | | 01 |RST
+   *       ￣￣ AE￣￣
+   */
   // Module ESP-WIFI
   #define ESP_WIFI_MODULE_COM                  2  // Must also set either SERIAL_PORT or SERIAL_PORT_2 to this
   #define ESP_WIFI_MODULE_BAUDRATE      BAUDRATE  // Must use same BAUDRATE as SERIAL_PORT & SERIAL_PORT_2
@@ -306,6 +302,10 @@
     #define TFT_BTARROWS_COLOR            0xDEE6  // Yellow
     #define TFT_BTOKMENU_COLOR            0x145F  // Cyan
   #endif
+  #define TFT_BUFFER_SIZE                  14400
+#elif HAS_GRAPHICAL_TFT
+  #define TFT_RESET_PIN                     PC6
+  #define TFT_BACKLIGHT_PIN                 PD13
 #endif
 
 #if NEED_TOUCH_PINS
